@@ -1,50 +1,44 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+  <div>
+     <x-header :right-options="{showMore: false}" :left-options="{showBack: true}">我爱阅读</x-header>
+    <group title="用户">
+      <x-input title="手机号" mask="999 9999 9999" v-model="phone" :max="13" is-type="china-mobile"></x-input>
+      <x-input title="密码" type='password' v-model="password" :max="9"></x-input>
+    </group>
+   <x-button type="primary" @click.native='login' action-type="button">登录</x-button>
   </div>
 </template>
 
 <script>
+import { AlertModule, Group, Cell, XHeader, XInput, XButton, Alert } from 'vux'
+
 export default {
-  name: 'HelloWorld',
+  components: {
+    XButton,
+    XInput,
+    XHeader,
+    Group,
+    Cell,
+    AlertModule,
+    Alert
+  },
+  methods: {
+    login () {
+      if (this.password === '123456') {
+        this.$router.push({ path: '/' })
+      } else {
+        AlertModule.show({
+          title: '登录失败',
+          content: '密码错误'
+        })
+      }
+    }
+  },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      phone: ' ',
+      password: ' '
     }
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
