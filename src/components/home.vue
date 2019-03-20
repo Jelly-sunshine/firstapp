@@ -1,6 +1,6 @@
 <template>
   <div>
-    <x-header :right-options="{showMore: true}" :left-options="{showBack: false}">我爱阅读</x-header>
+    <x-header :right-options="{showMore: true}" :left-options="{showBack: false}">我爱阅读1</x-header>
     <swiper :list="demo01_list" v-model="demo02_index" ></swiper>
     <grid :cols="4" :show-lr-borders="false">
       <grid-item :label="('Grid')" v-for="i in 4" :key="i">
