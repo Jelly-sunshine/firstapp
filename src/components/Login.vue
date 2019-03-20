@@ -34,6 +34,19 @@ export default {
       }
     }
   },
+    created () {
+    let _this = this
+    this.$http.get('http://localhost:3000/api/news').then(({data}) => {
+      console.log(data)
+      var new_data = data.map((item, index) => ({
+        title: item.title,
+        src: item.src,
+        desc: item.content
+      }))
+      console.log(new_data)
+      _this.list = new_data
+    })
+  },
   data () {
     return {
       phone: ' ',
